@@ -20,27 +20,25 @@ How to use it?
 			
          $mail = new \PHPMailer(true);
     	try{
-    		$mail-isSMTP();
-    		$mail-CharSet = ; #set it utf-8
-    		$mail-SMTPAuth = ; #set it true
-    		$mail-SMTPSecure = 'tls';
-    		$mail-Host = ; #gmail has host  smtp.gmail.com
-    		$mail-Port = ; #gmail has port  587 . without double quotes
-    		$mail-Username = ; #your username. actually your email
-    		$mail-Password = ; # your password. your mail password
-    		$mail-setFrom($request-email, $request-name); 
-    		$mail-Subject = $request-subject;
-    		$mail-MsgHTML($request-text);
-    		$mail-addAddress([resipientemail] ,[namerecipient]); 
-    		$mail-send();
+    		$mail->isSMTP();
+    		$mail->CharSet = 'utf-8';
+    		$mail->SMTPAuth =true;
+    		$mail->SMTPSecure = 'tls';
+    		$mail->Host = "host"; //gmail has host > smtp.gmail.com
+    		$mail->Port = "port"; //gmail has port > 587 . without double quotes
+    		$mail->Username = "youremail@domain.com"; //your username. actually your email
+    		$mail->Password = "yourpassword"; // your password. your mail password
+    		$mail->setFrom($request->email, $request->name); 
+    		$mail->Subject = $request->subject;
+    		$mail->MsgHTML($request->text);
+    		$mail->addAddress("recipientemail" ,"namerecipient"); 
+    		$mail->send();
     	}catch(phpmailerException $e){
     		dd($e);
     	}catch(Exception $e){
     		dd($e);
-    	} 
+    	}
     
-    
-
 
 see example code in this repository. clone it look for > SendMail.php at Controller folder
  
